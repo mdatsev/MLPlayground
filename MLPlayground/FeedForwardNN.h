@@ -11,6 +11,10 @@ public:
 	FeedForwardNN()
 	{
 	}
+	FeedForwardNN(const std::function<Ty(Ty)>& activationFunction)
+		: hiddenLayer(activationFunction), outputLayer(activationFunction)
+	{
+	}
 	auto feedForward(Matrix<Ty, nInputs, 1> inputs)
 	{
 		return outputLayer.process(

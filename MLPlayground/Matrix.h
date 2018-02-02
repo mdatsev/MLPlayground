@@ -23,6 +23,12 @@ public:
 	Matrix(const std::array<std::array<Ty, cols>, rows>& in)
 		: data(in)
 	{}
+	void printDebugString()
+	{
+		auto buffer = createStringW();
+		OutputDebugString(buffer);
+		delete buffer;
+	}
 	auto transposed()
 	{
 		Matrix<Ty, cols, rows> result;
@@ -96,7 +102,7 @@ public:
 	{
 		return add(scalar);
 	}
-	Matrix& add(Matrix& rhs)
+	Matrix& add(const Matrix& rhs)
 	{
 		for (int i = 0; i < rows; i++)
 		{

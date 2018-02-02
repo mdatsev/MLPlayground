@@ -8,6 +8,11 @@ namespace activationFunctions
 		return x >= 0 ? static_cast<Ty>(1) : static_cast<Ty>(-1);
 	}
 	template <typename Ty>
+	Ty step(Ty x)
+	{
+		return x > 0 ? static_cast<Ty>(1) : static_cast<Ty>(0);
+	}
+	template <typename Ty>
 	Ty sigmoid(Ty x)
 	{
 		return 1 / (1 + std::exp(-x));

@@ -14,10 +14,22 @@ struct Layer
 	}
 	auto process(Matrix<Ty, nInputs, 1> inputs)
 	{
+		//OutputDebugString(L"Inputs:\n");
+		//inputs.printDebugString();
+
 		Matrix<Ty, nOutputs, 1> result;
 		result = weights * inputs;
+		//OutputDebugString(L"W*I:\n");
+		//result.printDebugString();
+
 		result += biases;
+		//OutputDebugString(L"W*I + B:\n");
+		//result.printDebugString();
+
 		result.apply(activFunc);
+		//OutputDebugString(L"activated:\n");
+		//result.printDebugString();
+		//OutputDebugString(L"\n");
 		return result;
 	}
-};
+	};
