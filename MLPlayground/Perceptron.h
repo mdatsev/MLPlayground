@@ -3,16 +3,7 @@
 #include <array>
 #include <functional>
 #include <random>
-
-namespace activationFunctions
-{
-	template <typename Ty>
-	Ty sign(Ty x) 
-	{ 
-		return x >= 0 ? static_cast<Ty>(1) : static_cast<Ty>(-1);
-	}
-}
-
+#include "activationFunctions.h"
 template<typename Ty = float, int nInputs = 2>
 class Perceptron
 {

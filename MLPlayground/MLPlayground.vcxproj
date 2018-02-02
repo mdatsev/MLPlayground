@@ -147,6 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FeedForwardNN.h" />
+    <ClInclude Include="activationFunctions.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MLPlayground.h" />
     <ClInclude Include="Perceptron.h" />

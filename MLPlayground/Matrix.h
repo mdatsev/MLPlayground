@@ -2,6 +2,7 @@
 
 #include <array>
 #include <sstream>
+#include <functional>
 
 template<typename Ty, unsigned int rows, unsigned int cols>
 class Matrix
@@ -148,6 +149,18 @@ public:
 	auto& operator[](unsigned int row_index)
 	{
 		return data[row_index];
+	}
+	template<typename Ty>
+	Matrix& apply(std::function<Ty(Ty)> f)
+	{
+		for (auto& row : data)
+		{
+			for (Ty& elem : row)
+			{
+				elem = f(elem);
+			}
+		}
+		return *this;
 	}
 };
 
