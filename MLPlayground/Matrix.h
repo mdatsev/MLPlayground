@@ -22,11 +22,17 @@ public:
 	Matrix(const std::array<std::array<Ty, cols>, rows>& in)
 		: data(in)
 	{}
-	Matrix& operator=(const std::initializer_list<std::initializer_list<Ty>>& list)
+	auto transposed()
 	{
-		for (const auto& row : list) {
-			data.emplace_back(row);
+		Matrix<Ty, cols, rows> result;
+		for (int i = 0; i < cols; i++)
+		{
+			for (int j = 0; j < rows; j++)
+			{
+				result[i][j] = data[j][i];
+			}
 		}
+		return result;
 	}
 	const wchar_t* createStringW()
 	{
