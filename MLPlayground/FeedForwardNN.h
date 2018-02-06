@@ -43,16 +43,16 @@ public:
 		auto output_errors = targets - outputs;
 		auto output_gradients = outputs.map(outputLayer.activFunc.derivative_output);
 		output_gradients *= output_errors;
+		output_gradients *= learning_rate;
 		auto output_delta_weights = output_gradients * hidden_outputs.transposed();
-		output_delta_weights *= learning_rate;
 		outputLayer.weights += output_delta_weights;
 		outputLayer.biases += output_gradients;
 
 		auto hidden_errors = outputLayer.weights.transposed() * output_errors;
 		auto hidden_gradients = hidden_outputs.map(outputLayer.activFunc.derivative_output);
 		hidden_gradients *= hidden_errors;
+		hidden_gradients *= learning_rate;
 		auto hidden_delta_weights = hidden_gradients * inputs.transposed();
-		hidden_delta_weights *= learning_rate;
 		hiddenLayer.weights += hidden_delta_weights;
 		hiddenLayer.biases += hidden_gradients;
 	}
