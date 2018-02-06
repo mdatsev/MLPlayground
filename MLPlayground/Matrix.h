@@ -132,6 +132,33 @@ public:
 	{
 		return multiply(scalar);
 	}
+	Matrix& multiply(const Matrix& rhs)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				data[i][j] *= rhs[i][j];
+			}
+		}
+		return *this;
+	}
+	Matrix& operator*=(const Matrix& rhs)
+	{
+		return multiply(rhs);
+	}
+	Matrix& operator-(const Matrix& rhs)
+	{
+		Matrix result;
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				result[i][j] = data[i][j] - rhs[i][j];
+			}
+		}
+		return result;
+	}
 	template <unsigned int rhs_cols>
 	auto operator*(const Matrix<Ty, cols, rhs_cols>& rhs) const
 	{
@@ -156,8 +183,7 @@ public:
 	{
 		return data[row_index];
 	}
-	template<typename Ty>
-	Matrix& apply(std::function<Ty(Ty)> f)
+	Matrix& apply(const std::function<Ty(Ty)>& f)
 	{
 		for (auto& row : data)
 		{
@@ -167,6 +193,18 @@ public:
 			}
 		}
 		return *this;
+	}
+	Matrix map(const std::function<Ty(Ty)>& f)
+	{
+		Matrix result;
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				result[i][j] = f(data[i][j]);
+			}
+		}
+		return result;
 	}
 };
 
